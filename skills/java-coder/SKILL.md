@@ -7,8 +7,9 @@ author: LPXL
 
 ---
 
-2. 用法示例 (Triggers)
-   /java-coder 根据以下的架构以及编码风格模式，编写我需要的Java后端代码，要求代码必须包含完整的错误处理逻辑，并且在生成前先输出设计思路与核心组件说明。
+### 用法示例 (Triggers)
+
+/java-coder 根据以下的架构以及编码风格模式，编写我需要的Java后端代码，要求代码必须包含完整的错误处理逻辑，并且在生成前先输出设计思路与核心组件说明。
 
 ---
 
@@ -28,13 +29,13 @@ author: LPXL
 
 ### 1.2 核心组件
 
-| 组件                           | 职责                                                                    |
-| ------------------------------ | ----------------------------------------------------------------------- |
-| `SecurityConfig`               | 安全过滤链配置，CSRF禁用，Session无状态，URL白名单                      |
-| `JwtAuthenticationTokenFilter` | 继承，每次请求解析Token并恢复用户上下文 `OncePerRequestFilter`          |
-| `TokenService`                 | JWT创建/解析/刷新，Redis存储LoginUser，20分钟自动续期                   |
+| 组件                             | 职责                                       |
+| ------------------------------ | ---------------------------------------- |
+| `SecurityConfig`               | 安全过滤链配置，CSRF禁用，Session无状态，URL白名单         |
+| `JwtAuthenticationTokenFilter` | 继承，每次请求解析Token并恢复用户上下文 `OncePerRequestFilter` |
+| `TokenService`                 | JWT创建/解析/刷新，Redis存储LoginUser，20分钟自动续期    |
 | `SysLoginService`              | 登录入口：验证码校验 → IP黑名单 → AuthenticationManager认证 → 生成Token |
-| `UserDetailsServiceImpl`       | 实现，查询数据库组装 `UserDetailsService``LoginUser`                    |
+| `UserDetailsServiceImpl`       | 实现，查询数据库组装 `UserDetailsService``LoginUser` |
 
 ### 1.3 Token机制详解
 
@@ -635,19 +636,19 @@ public List<SysUser> selectUserList() { ... }
 
 ### 6.1 工具类清单
 
-| 工具类          | 功能          | 核心方法                                                                  |
-| --------------- | ------------- | ------------------------------------------------------------------------- |
+| 工具类             | 功能        | 核心方法                                     |
+| --------------- | --------- | ---------------------------------------- |
 | `RedisCache`    | Redis操作封装 | `setCacheObject()`, `getCacheObject()`, `deleteObject()`, `setCacheMap()` |
 | `SecurityUtils` | 安全工具      | `getLoginUser()`, `getAuthentication()`, `isAdmin()`, `encryptPassword()` |
-| `ExcelUtil<T>`  | Excel导入导出 | `importExcel()`, `exportExcel()` (基于POI)                                |
-| `StringUtils`   | 字符串工具    | `isEmpty()`, `isNotEmpty()`, `format()`, `substring()`                    |
-| `BeanUtils`     | Bean工具      | `copyBeanProp()`, `beanToMap()`, `mapToBean()`                            |
-| `IpUtils`       | IP工具        | `getIpAddr()`, `isMatchedIp()` (IP黑名单校验)                             |
-| `AddressUtils`  | 地址解析      | `getRealAddressByIP()` (IP→物理地址)                                      |
-| `FileUtils`     | 文件工具      | 文件大小、名称、上传下载                                                  |
-| `SqlUtil`       | SQL工具       | 防SQL注入，关键字过滤                                                     |
-| `Threads`       | 线程工具      | `shutdownAndAwaitTermination()` 优雅关闭线程池                            |
-| `Convert`       | 类型转换      | `toInt()`, `toStrArray()`, `toLong()`                                     |
+| `ExcelUtil<T>`  | Excel导入导出 | `importExcel()`, `exportExcel()` (基于POI) |
+| `StringUtils`   | 字符串工具     | `isEmpty()`, `isNotEmpty()`, `format()`, `substring()` |
+| `BeanUtils`     | Bean工具    | `copyBeanProp()`, `beanToMap()`, `mapToBean()` |
+| `IpUtils`       | IP工具      | `getIpAddr()`, `isMatchedIp()` (IP黑名单校验) |
+| `AddressUtils`  | 地址解析      | `getRealAddressByIP()` (IP→物理地址)         |
+| `FileUtils`     | 文件工具      | 文件大小、名称、上传下载                             |
+| `SqlUtil`       | SQL工具     | 防SQL注入，关键字过滤                             |
+| `Threads`       | 线程工具      | `shutdownAndAwaitTermination()` 优雅关闭线程池  |
+| `Convert`       | 类型转换      | `toInt()`, `toStrArray()`, `toLong()`    |
 
 ### 6.2 响应封装
 
@@ -703,15 +704,15 @@ public class TreeEntity extends BaseEntity {
 
 ### 6.4 自定义注解
 
-| 注解            | 功能         | 使用位置               |
-| --------------- | ------------ | ---------------------- |
+| 注解              | 功能     | 使用位置                 |
+| --------------- | ------ | -------------------- |
 | `@Log`          | 操作日志记录 | Controller方法         |
 | `@DataScope`    | 数据权限过滤 | Controller/Service方法 |
-| `@DataSource`   | 数据源切换   | Service方法            |
-| `@RateLimiter`  | 接口限流     | Controller方法         |
-| `@RepeatSubmit` | 防重复提交   | Controller方法         |
-| `@Xss`          | XSS过滤      | Entity字段             |
-| `@Desensitize`  | 数据脱敏     | Entity字段             |
+| `@DataSource`   | 数据源切换  | Service方法            |
+| `@RateLimiter`  | 接口限流   | Controller方法         |
+| `@RepeatSubmit` | 防重复提交  | Controller方法         |
+| `@Xss`          | XSS过滤  | Entity字段             |
+| `@Desensitize`  | 数据脱敏   | Entity字段             |
 
 ### 6.5 全局异常处理
 
@@ -821,18 +822,18 @@ JSON: Fastjson2
 
 ### 8.1 业务模块概览
 
-| 模块             | 职责     | 核心实体/功能                                                |
-| ---------------- | -------- | ------------------------------------------------------------ |
-| `system`         | 系统管理 | 用户、角色、菜单、部门、岗位、字典、配置、公告、日志         |
-| `device`         | 设备管理 | 智能设备型号、设备消息记录、AP标签消息                       |
-| `packaging`      | 包装管理 | 包装模型、包装类别、设备绑定关系                             |
-| `project`        | 项目管理 | 项目信息、项目用户、项目数据源、仓库包装模型                 |
-| `warehouse`      | 仓库管理 | 仓库信息、AP仓库、用户仓库关系                               |
-| `stock-transfer` | 库存调拨 | 载体、出入库单据、调拨批次、调拨类型、盘点计划/明细/变更申请 |
-| `report`         | 报表     | 出入库记录、日报库存、仪表盘、差异分析                       |
-| `alert`          | 告警     | 告警类型、告警设置                                           |
-| `quartz`         | 定时任务 | 任务管理、任务日志                                           |
-| `zetag-mq-sdk`   | 消息SDK  | Kafka消费者、ZiFi客户端抽象                                  |
+| 模块               | 职责    | 核心实体/功能                         |
+| ---------------- | ----- | ------------------------------- |
+| `system`         | 系统管理  | 用户、角色、菜单、部门、岗位、字典、配置、公告、日志      |
+| `device`         | 设备管理  | 智能设备型号、设备消息记录、AP标签消息            |
+| `packaging`      | 包装管理  | 包装模型、包装类别、设备绑定关系                |
+| `project`        | 项目管理  | 项目信息、项目用户、项目数据源、仓库包装模型          |
+| `warehouse`      | 仓库管理  | 仓库信息、AP仓库、用户仓库关系                |
+| `stock-transfer` | 库存调拨  | 载体、出入库单据、调拨批次、调拨类型、盘点计划/明细/变更申请 |
+| `report`         | 报表    | 出入库记录、日报库存、仪表盘、差异分析             |
+| `alert`          | 告警    | 告警类型、告警设置                       |
+| `quartz`         | 定时任务  | 任务管理、任务日志                       |
+| `zetag-mq-sdk`   | 消息SDK | Kafka消费者、ZiFi客户端抽象              |
 
 ### 8.2 系统管理模块详解
 
@@ -877,15 +878,15 @@ SysDept (部门)
 
 ### 8.4 安全防护机制
 
-| 机制       | 实现方式                                                 |
-| ---------- | -------------------------------------------------------- |
-| XSS防护    | + + `@Xss`注解 `XssFilter``XssHttpServletRequestWrapper` |
-| SQL注入    | `SqlUtil.sqlFilter()` 关键字过滤                         |
-| 接口限流   | `@RateLimiter` + (基于Redis计数器) `RateLimiterAspect`   |
-| 防重复提交 | `@RepeatSubmit` + `RepeatSubmitInterceptor`              |
-| 验证码     | + Redis存储 (支持Math/Char类型) `CaptchaConfig`          |
-| IP黑名单   | `SysLoginService.loginPreCheck()` + Redis配置            |
-| 数据脱敏   | `@Desensitize` 注解 (手机号、身份证、邮箱等)             |
+| 机制    | 实现方式                                     |
+| ----- | ---------------------------------------- |
+| XSS防护 | + + `@Xss`注解 `XssFilter``XssHttpServletRequestWrapper` |
+| SQL注入 | `SqlUtil.sqlFilter()` 关键字过滤              |
+| 接口限流  | `@RateLimiter` + (基于Redis计数器) `RateLimiterAspect` |
+| 防重复提交 | `@RepeatSubmit` + `RepeatSubmitInterceptor` |
+| 验证码   | + Redis存储 (支持Math/Char类型) `CaptchaConfig` |
+| IP黑名单 | `SysLoginService.loginPreCheck()` + Redis配置 |
+| 数据脱敏  | `@Desensitize` 注解 (手机号、身份证、邮箱等)          |
 
 ### 8.5 缓存架构
 
@@ -901,16 +902,16 @@ Redis缓存Key设计:
 
 ### 8.6 设计模式应用
 
-| 模式         | 应用场景                                                          |
-| ------------ | ----------------------------------------------------------------- |
-| **模板方法** | → before/doExecute/after `AbstractQuartzJob`                      |
-| **单例**     | `AsyncManager.me()` 饿汉式                                        |
-| **工厂**     | 创建异步任务 `AsyncFactory`                                       |
-| **策略**     | `MisfirePolicy` 定时任务错过策略                                  |
-| **代理**     | Spring AOP (DataScope/Log/RateLimiter/DataSource)                 |
-| **观察者**   | 异步回调链 `cleanDeviceMessage → callback → processDeviceMessage` |
-| **Builder**  | Quartz , , `JobBuilder``TriggerBuilder``CronScheduleBuilder`      |
-| **责任链**   | Spring Security `FilterChain`                                     |
+| 模式          | 应用场景                                     |
+| ----------- | ---------------------------------------- |
+| **模板方法**    | → before/doExecute/after `AbstractQuartzJob` |
+| **单例**      | `AsyncManager.me()` 饿汉式                  |
+| **工厂**      | 创建异步任务 `AsyncFactory`                    |
+| **策略**      | `MisfirePolicy` 定时任务错过策略                 |
+| **代理**      | Spring AOP (DataScope/Log/RateLimiter/DataSource) |
+| **观察者**     | 异步回调链 `cleanDeviceMessage → callback → processDeviceMessage` |
+| **Builder** | Quartz , , `JobBuilder``TriggerBuilder``CronScheduleBuilder` |
+| **责任链**     | Spring Security `FilterChain`            |
 
 ---
 
