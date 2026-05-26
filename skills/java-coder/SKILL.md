@@ -5,6 +5,13 @@ version: 1.0.0
 author: LPXL
 ---
 
+---
+
+2. 用法示例 (Triggers)
+   /java-coder 根据以下的架构以及编码风格模式，编写我需要的Java后端代码，要求代码必须包含完整的错误处理逻辑，并且在生成前先输出设计思路与核心组件说明。
+
+---
+
 ## 1. Spring Security + JWT + Redis 鉴权体系
 
 ### 1.1 架构概览
