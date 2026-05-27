@@ -1,11 +1,8 @@
 ---
 name: java-coder
 description: 基于企业级Java后端开发，提炼核心技术栈与设计模式，涵盖安全鉴权、权限控制、定时任务、IIOT消费队列、MyBatis-Plus ORM等模块的实战指南与代码示例。专注于JAVA后端代码编写
-version: 1.0.0
-author: LPXL
 ---
 
----
 
 ### 用法示例 (Triggers)
 
